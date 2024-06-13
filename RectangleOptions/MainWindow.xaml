@@ -1,0 +1,28 @@
+﻿<Window x:Class="RectangleOptions.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:RectangleOptions"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:BoolToBrushConverter x:Key="BoolToBrushConverter"/>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Width="300" Height="300" Stroke="Red" StrokeThickness="8"
+                   Fill="{Binding IsChecked, ElementName=FillCheckBox, Converter={StaticResource BoolToBrushConverter}}"
+                   Visibility="{Binding IsChecked, ElementName=VisibilityCheckBox, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <CheckBox x:Name="FillCheckBox" Content="Fill Rectangle" Margin="10"/>
+            <CheckBox x:Name="VisibilityCheckBox" Content="Hide Rectangle" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
